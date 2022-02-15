@@ -15,7 +15,7 @@ export default {
   },
   async mounted() {
     try {
-      this.products = await this.$strapi.$products.find()
+      this.products = (await this.$strapi.$products.find({populate: '*'})).data
     } catch (error) {
       this.error = error
     }

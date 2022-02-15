@@ -1,5 +1,5 @@
 <template>
-  <Products :products="this.category.products" :error="error" />
+  <Products :products="products" :error="error" />
 </template>
 
 <script>
@@ -8,13 +8,13 @@ import Products from "~/components/Products.vue"
 export default {
   data() {
     return {
-      category: {},
+      products: [],
       error: null
     }
   },
   async mounted() {
     try {
-      this.category = await this.$strapi.$categories.findOne(this.$route.params.id)
+      this.products = (await this.$strapi.$products.find({ 'filters[categories][id][$eq]' : this.$route.params.id, populate: '*'})).data
     } catch (error) {
       this.error = error
     }

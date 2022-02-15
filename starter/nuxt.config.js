@@ -74,7 +74,7 @@ export default {
    */
   modules: ['@nuxtjs/strapi'],
   strapi: {
-    url: process.env.API_URL || "http://localhost:1337",
+    url: process.env.API_URL || "http://localhost:1337/api",
     entities: [
       'products',
       'categories'
